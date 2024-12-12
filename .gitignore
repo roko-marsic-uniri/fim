@@ -1,0 +1,20 @@
+# Python-related files
+*.pyc
+*.pyo
+__pycache__/
+
+# Environment files
+.env
+
+# Django-related files
+db.sqlite3
+/media/
+
+# IDE or Editor files
+*.vscode/
+*.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
