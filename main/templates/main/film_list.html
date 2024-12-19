@@ -1,0 +1,37 @@
+{% extends "main/index.html" %}
+
+{% block content %}
+    <h2>Filmovi</h2>
+    <form method="get">
+        <input type="text" name="search" placeholder="Search by title, director, or description"
+               value="{{ request.GET.search }}">
+        <input type="text" name="genre" placeholder="Filter by genre" value="{{ request.GET.genre }}">
+        <button type="submit">Search</button>
+    </form>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Director</th>
+                <th>Release Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for film in films %}
+                <tr>
+                    <td>{{ film.title }}</td>
+                    <td>{{ film.genre }}</td>
+                    <td>{{ film.director }}</td>
+                    <td>{{ film.release_date }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No films found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
