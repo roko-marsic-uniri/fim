@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+
+{% block title %}{{ film.title }} - Fim{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'film_detail.css' %}">
+    <div class="film-detail-container">
+        <h1>{{ film.title }}</h1>
+        <div class="film-poster">
+            {% if film.poster_url %}
+                <img src="{{ film.poster_url }}" alt="{{ film.title }}">
+            {% else %}
+                <p>No Image Available</p>
+            {% endif %}
+        </div>
+        <p><strong>Genre:</strong> {{ film.genre }}</p>
+        <p><strong>Director:</strong> {{ film.director }}</p>
+        <p><strong>Release Date:</strong> {{ film.release_date }}</p>
+        <p><strong>Duration:</strong> {{ film.duration }} minutes</p>
+        <p><strong>Description:</strong> {{ film.description }}</p>
+
+        <h2>Reviews</h2>
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'add_review' film.pk %}">
+                {% csrf_token %}
+                {{ review_form.as_p }}
+                <button type="submit">Add Review</button>
+            </form>
+        {% else %}
+            <p><a href="{% url 'login' %}">Login</a> to add a review.</p>
+        {% endif %}
+
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <p>{{ review.content }}</p>
+                    <p><strong>By:</strong> {{ review.user.username }} on {{ review.created_at }}</p>
+                    {% if review.user == user %}
+                        <form method="post" action="{% url 'delete_review' film.pk review.pk %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit">Delete</button>
+                        </form>
+                        <form method="get" action="{% url 'update_review' film.pk review.pk %}" style="display:inline;">
+                            <button type="submit">Edit</button>
+                        </form>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

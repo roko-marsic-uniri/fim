@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.film-detail-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.film-detail-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.film-poster img {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100%;
+    height: auto;
+}
+
+.film-detail-container p {
+    margin: 10px 0;
+}
+
+.film-detail-container h2 {
+    margin-top: 30px;
+}
+
+.film-detail-container form {
+    margin-bottom: 20px;
+}
+
+.film-detail-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.film-detail-container ul li {
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.film-detail-container ul li p {
+    margin: 5px 0;
+}
+
+.film-detail-container ul li form {
+    display: inline;
+}

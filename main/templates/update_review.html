@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block title %}{{ film.title }} - Update Review{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'film_detail.css' %}">
+    
+    <div class="film-detail-container">
+        <h1>Update Review for {{ film.title }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update Review</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

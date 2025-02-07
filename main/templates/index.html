@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Fim{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{% url 'home' %}"><h1>Fim</h1></a>
+        <div class="navbar-links">
+            {% if user.is_authenticated %}
+                <p>Account: {{ user.username }}</p>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button class="logout" type="submit">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+    {% block content %}
+        <!-- {% include 'film_list.html' %} -->
+    {% endblock %}
+</body>
+</html>

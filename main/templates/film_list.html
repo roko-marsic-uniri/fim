@@ -1,15 +1,16 @@
-{% extends "main/index.html" %}
-
+{% extends 'index.html' %}
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'film_list.css' %}">
+<div class="film-list-container">
     <h2>Filmovi</h2>
-    <form method="get">
+    <form method="get" class="search-form">
         <input type="text" name="search" placeholder="Search by title, director, or description"
                value="{{ request.GET.search }}">
         <input type="text" name="genre" placeholder="Filter by genre" value="{{ request.GET.genre }}">
         <button type="submit">Search</button>
     </form>
-    
-    <table>
+    <table class="film-table">
         <thead>
             <tr>
                 <th>Title</th>
@@ -21,7 +22,7 @@
         <tbody>
             {% for film in films %}
                 <tr>
-                    <td>{{ film.title }}</td>
+                    <td><a href="{% url 'film_detail' film.pk %}">{{ film.title }}</a></td>
                     <td>{{ film.genre }}</td>
                     <td>{{ film.director }}</td>
                     <td>{{ film.release_date }}</td>
@@ -33,5 +34,5 @@
             {% endfor %}
         </tbody>
     </table>
-
+</div>
 {% endblock %}
